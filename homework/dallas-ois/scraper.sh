@@ -26,9 +26,3 @@ cat data-hold/ois_2009.html | pup 'td:nth-of-type(1)' | grep -oE 'href="/ois/doc
 cat data-hold/ois_2010.html | pup 'td:nth-of-type(1)' | grep -oE 'href="/ois/docs/narrative/[^"]+"' | grep -oP '".*?"' | tr -d '"' >> downloadlist.txt
 cat data-hold/ois_2011.html | pup 'td:nth-of-type(1)' | grep -oE 'href="/ois/docs/narrative/[^"]+"' | grep -oP '".*?"' | tr -d '"' >> downloadlist.txt
 cat data-hold/ois_2012.html | pup 'td:nth-of-type(1)' | grep -oE 'href="/ois/docs/narrative/[^"]+"' | grep -oP '".*?"' | tr -d '"' >> downloadlist.txt
-
-while read page; do
-	domain="http://www.dallaspolice.net"
-	absolute_url=$domain$page
-	curl -s $absolute_url > data-hold/pdfs
-done < <(cat downloadlist.txt)
